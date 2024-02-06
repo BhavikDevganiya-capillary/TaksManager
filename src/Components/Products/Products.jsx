@@ -1,20 +1,18 @@
-import React, { useCallback, useEffect } from "react";
-import Navbar from "./Navbar";
-import { useDispatch, useSelector } from "react-redux";
-import { getAPIData } from "./SagaStore/action";
+import React, { useEffect } from "react";
 
-export default function Products() {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.dataReducer?.data?.products);
+import { connect } from "react-redux";
+import { fetchDataRequest } from "../../Store/Actions/Actions";
+
+const Products = ({ data, fetchDataRequest }) => {
+  console.log(data);
   useEffect(() => {
-    dispatch(getAPIData());
-  }, [dispatch]);
+    fetchDataRequest();
+  }, []);
   return (
     <>
-      <Navbar />
       {data && data.length > 0 && (
-        <div className="h-screen bg-gradient-to-r from-violet-500 to-fuchsia-500">
-          <p className="text-center text-5xl pt-5 font-bold">Products Page</p>
+        <div className="h-screen w-full bg-gradient-to-r from-violet-500 to-fuchsia-500">
+          <p className="text-center text-5xl pt-5 font-bold ">Products Page</p>
           <section className="mx-auto w-full max-w-7xl px-4 py-4">
             <div className="mt-6 flex flex-col">
               <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
@@ -102,4 +100,19 @@ export default function Products() {
       )}
     </>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  data: state.Products?.product?.products,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchDataRequest: () => dispatch(fetchDataRequest()),
+});
+
+const ConnectedProducts = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Products);
+
+export default ConnectedProducts;

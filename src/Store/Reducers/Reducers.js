@@ -6,8 +6,15 @@ import {
   DELETE_SLIDE,
   DELETE_TASK,
   EDIT_TASK,
+  FETCH_DATA_FAIL,
+  FETCH_DATA_REQUEST,
+  FETCH_DATA_SUCCESS,
 } from "../Constants/Constants";
-import { slideInitialState, taskInitialState } from "../States/States";
+import {
+  productInitialState,
+  slideInitialState,
+  taskInitialState,
+} from "../States/States";
 
 export const slideReducer = (state = slideInitialState, action) => {
   switch (action.type) {
@@ -77,6 +84,33 @@ export const taskReducer = (state = taskInitialState, action) => {
       return {
         ...state,
         taskName: updatedTasks,
+      };
+    default:
+      return state;
+  }
+};
+
+export const productReducer = (state = productInitialState, action) => {
+  switch (action.type) {
+    case FETCH_DATA_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case FETCH_DATA_SUCCESS:
+      var { data } = action.payload;
+      return {
+        ...state,
+        product: data,
+        loading: false,
+      };
+    case FETCH_DATA_FAIL:
+      var { error } = action.payload;
+      return {
+        ...state,
+        loading: false,
+        error: error,
       };
     default:
       return state;

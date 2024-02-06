@@ -5,3 +5,9 @@ export const slideInitialState = {
 export const taskInitialState = {
   taskName: [],
 };
+
+export const productInitialState = {
+  product: [],
+  loading: false,
+  error: null,
+};

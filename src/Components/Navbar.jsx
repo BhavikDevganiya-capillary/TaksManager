@@ -7,7 +7,7 @@ export default function Navbar() {
     <>
       <div className="bg-white w-full h-14 flex items-center sticky top-0">
         <h1 className="text-black font-bold text-2xl w-[20%] flex justify-center">
-          YeKarlo
+          <Link to="/">YeKarlo</Link>
         </h1>
         <ul className="flex w-80 justify-around mx-5 font-bold text-lg">
           <li>
