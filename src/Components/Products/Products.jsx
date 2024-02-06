@@ -2,16 +2,21 @@ import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
 import { fetchDataRequest } from "../../Store/Actions/Actions";
+import LoadingSpinner from "../../Atoms/LoadingAtom";
 
-const Products = ({ data, fetchDataRequest }) => {
+const Products = ({ data, loading, fetchDataRequest }) => {
   console.log(data);
   useEffect(() => {
     fetchDataRequest();
   }, []);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
   return (
     <>
       {data && data.length > 0 && (
-        <div className="h-screen w-full bg-gradient-to-r from-violet-500 to-fuchsia-500">
+        <div className=" w-full bg-gradient-to-r from-violet-500 to-fuchsia-500">
           <p className="text-center text-5xl pt-5 font-bold ">Products Page</p>
           <section className="mx-auto w-full max-w-7xl px-4 py-4">
             <div className="mt-6 flex flex-col">
@@ -104,6 +109,7 @@ const Products = ({ data, fetchDataRequest }) => {
 
 const mapStateToProps = (state) => ({
   data: state.Products?.product?.products,
+  loading: state.Products?.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
