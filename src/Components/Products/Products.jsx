@@ -5,7 +5,6 @@ import { fetchDataRequest } from "../../Store/Actions/Actions";
 import LoadingSpinner from "../../Atoms/LoadingAtom";
 
 const Products = ({ data, loading, fetchDataRequest }) => {
-  console.log(data);
   useEffect(() => {
     fetchDataRequest();
   }, []);
