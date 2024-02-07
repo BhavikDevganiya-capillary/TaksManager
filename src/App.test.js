@@ -25,4 +25,10 @@ describe("write test cases for task manager", () => {
     //click on that button and check is task value is changes from old to new value
     //check whether task delete button is working or not click on delete slide and check whether task is deleted or not
   });
+  test("Product page testcases", () => {
+    //check whether loading is shown or not
+    //check if product page is there or not
+    //check whether  it has table in page or not
+    //check whether table contains data inside it or not
+  });
 });
